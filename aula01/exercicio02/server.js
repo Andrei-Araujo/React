@@ -1,7 +1,7 @@
 // requisitou o módulo http do Node.js
 const http = require('http')
 
-// criamos uma função que vai tratar todas as requisicoes feitas no nosso servidor e vamos retrnar uma resposta padrao
+// criamos uma função que vai tratar todas as requisicoes feitas no nosso servidor e vamos retornar uma resposta padrao
 //const tratamentoRequisicoes = function(requisicao, resposta){
 //    resposta.writeHead(200, { "Content-Type" : "text/html"})
 //    resposta.write("<h1>Meu primeiro site Node.js</h1>")
