@@ -1,8 +1,7 @@
-
-import { Link, Route, Switch } from 'react-router-dom';
-import './App.css';
-import { Component1 } from './Componente1';
-import { Componente2 } from './Componente2';
+import { Link, Route, Switch } from "react-router-dom";
+import "./App.css";
+import { Component1 } from "./Componente1";
+import { Componente2 } from "./Componente2";
 
 function App() {
   return (
@@ -12,11 +11,10 @@ function App() {
         <Link to="/componente2">Componente 2</Link>
       </nav>
       <Switch>
-      <Route path="/componente1" component={Component1}/>
-      <Route path="/componente2" component={Componente2}/>
-    </Switch>
+        <Route path="/componente1" component={Component1} />
+        <Route path="/componente2" component={Componente2} />
+      </Switch>
     </div>
-
   );
 }
 

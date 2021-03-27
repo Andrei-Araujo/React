@@ -1,6 +1,8 @@
 import React from "react";
 
 export const ListagemCursos = (props) => {
+  const { excluir, selecionar } = props;
+
   const exibirLinhas = () => {
     //retorna a lista de props se existir
     const cursos = props.cursos || [];
@@ -8,6 +10,20 @@ export const ListagemCursos = (props) => {
       <tr key={curso._id}>
         <td>{curso.codigo}</td>
         <td>{curso.descricao}</td>
+        <td>
+          <button
+            className="btn btn-success ml-2"
+            onClick={(e) => selecionar(curso._id)}
+          >
+            <i className="fa fa-check"></i>
+          </button>
+          <button
+            className="btn btn-danger ml-2"
+            onClick={(e) => excluir(curso._id)}
+          >
+            <i className="fa fa-trash-o"></i>
+          </button>
+        </td>
       </tr>
     ));
   };
@@ -20,6 +36,7 @@ export const ListagemCursos = (props) => {
           <tr>
             <th>Código</th>
             <th>Descrição</th>
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody>{exibirLinhas()}</tbody>

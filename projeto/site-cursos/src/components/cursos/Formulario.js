@@ -14,11 +14,16 @@ export const FormularioCursos = (props) => {
     isPrecoValido,
     isCategoriaValido,
 
+    isFormValido,
+
     setCodigo,
     setDescricao,
     setCargaHoraria,
     setPreco,
     setCategoria,
+
+    adicionar,
+    limpar,
   } = props;
 
   return (
@@ -26,7 +31,7 @@ export const FormularioCursos = (props) => {
       <h3 className="border-bottom">Formulário</h3>
       <form>
         <div
-          className={"form-group row " + (!isCodigoValido ? "errorInput" : "")}
+          className={`form-group ${!isCodigoValido ? "errorInput" : ""} row `}
         >
           <label htmlFor="codigo" className="col-sm-3 col-form-label">
             Código:
@@ -118,8 +123,20 @@ export const FormularioCursos = (props) => {
           </div>
         </div>
         <div className="form-group row">
-          <button className="btn btn-primary ml-3 mb-3">Adicionar</button>
-          <button className="btn btn-secondary ml-3 mb-3">Limpar</button>
+          <button
+            className="btn btn-primary ml-3 mb-3"
+            disabled={!isFormValido}
+            onClick={adicionar}
+          >
+            Adicionar
+          </button>
+          <button
+            className="btn btn-secondary ml-3 mb-3"
+            type="button"
+            onClick={limpar}
+          >
+            Limpar
+          </button>
         </div>
       </form>
     </div>
