@@ -3,8 +3,8 @@
 ## Conteúdo do Repositório
 
 O repositório está organizado em duas linhas principais:
-	- Aulas
-	- Projeto
+- Aulas
+- Projeto
 
 ### Aulas
 
@@ -17,9 +17,9 @@ Em Projeto, o foco é em utilizar as técnicas e recursos computacionais para ge
 ## Tópicos abordados
 
 Dentre os recursos abordados, destacam-se:
-	- Node.js
-	- Express.js
-	- MongoDB
-	- React
-	- Redux
-	- React Native
+- Node.js
+- Express.js
+- MongoDB
+- React
+- Redux
+- React Native
