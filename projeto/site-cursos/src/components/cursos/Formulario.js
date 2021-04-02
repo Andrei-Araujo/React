@@ -1,7 +1,19 @@
 import React from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import {
+  limparFormularioCurso,
+  salvarCurso,
+  setCursoCargaHoraria,
+  setCursoCategoria,
+  setCursoCodigo,
+  setCursoDescricao,
+  setCursoPreco,
+} from "../../actions/cursos";
 
-export const FormularioCursos = (props) => {
+const FormularioCursos = (props) => {
   const {
+    _id,
     codigo,
     descricao,
     cargaHoraria,
@@ -14,16 +26,14 @@ export const FormularioCursos = (props) => {
     isPrecoValido,
     isCategoriaValido,
 
-    isFormValido,
+    setCursoCodigo,
+    setCursoDescricao,
+    setCursoCargaHoraria,
+    setCursoPreco,
+    setCursoCategoria,
 
-    setCodigo,
-    setDescricao,
-    setCargaHoraria,
-    setPreco,
-    setCategoria,
-
-    adicionar,
-    limpar,
+    salvarCurso,
+    limparFormularioCurso,
   } = props;
 
   return (
@@ -42,7 +52,7 @@ export const FormularioCursos = (props) => {
               className={`form-control`}
               id="codigo"
               value={codigo}
-              onChange={setCodigo}
+              onChange={setCursoCodigo}
             />
           </div>
         </div>
@@ -60,7 +70,7 @@ export const FormularioCursos = (props) => {
               className="form-control"
               id="descricao"
               value={descricao}
-              onChange={setDescricao}
+              onChange={setCursoDescricao}
             />
           </div>
         </div>
@@ -78,7 +88,7 @@ export const FormularioCursos = (props) => {
               className="form-control"
               id="cargaHoraria"
               value={cargaHoraria}
-              onChange={setCargaHoraria}
+              onChange={setCursoCargaHoraria}
             />
           </div>
         </div>
@@ -95,7 +105,7 @@ export const FormularioCursos = (props) => {
               className="form-control"
               id="preco"
               value={preco}
-              onChange={setPreco}
+              onChange={setCursoPreco}
             />
           </div>
         </div>
@@ -113,7 +123,7 @@ export const FormularioCursos = (props) => {
               className="form-control"
               id="categoria"
               value={categoria}
-              onChange={setCategoria}
+              onChange={setCursoCategoria}
             >
               <option>INFORMATICA</option>
               <option>ENGENHARIA</option>
@@ -125,15 +135,28 @@ export const FormularioCursos = (props) => {
         <div className="form-group row">
           <button
             className="btn btn-primary ml-3 mb-3"
-            disabled={!isFormValido}
-            onClick={adicionar}
+            onClick={(e) =>
+              salvarCurso(e, {
+                _id,
+                codigo,
+                descricao,
+                cargaHoraria,
+                preco,
+                categoria,
+                isCodigoValido,
+                isDescricaoValido,
+                isCargaHorariaValido,
+                isPrecoValido,
+                isCategoriaValido,
+              })
+            }
           >
-            Adicionar
+            {_id ? "Atualizar" : "Adicionar"}
           </button>
           <button
             className="btn btn-secondary ml-3 mb-3"
             type="button"
-            onClick={limpar}
+            onClick={limparFormularioCurso}
           >
             Limpar
           </button>
@@ -142,3 +165,35 @@ export const FormularioCursos = (props) => {
     </div>
   );
 };
+
+const mapStoreToProps = (store) => ({
+  _id: store.cursos._id,
+  codigo: store.cursos.codigo,
+  isCodigoValido: store.cursos.isCodigoValido,
+  descricao: store.cursos.descricao,
+  isDescricaoValido: store.cursos.isDescricaoValido,
+  cargaHoraria: store.cursos.cargaHoraria,
+  isCargaHorariaValido: store.cursos.isCargaHorariaValido,
+  preco: store.cursos.preco,
+  isPrecoValido: store.cursos.isPrecoValido,
+  categoria: store.cursos.categoria,
+  isCategoriaValido: store.cursos.isCategoriaValido,
+});
+
+const mapActionToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      setCursoCodigo,
+      setCursoDescricao,
+      setCursoCargaHoraria,
+      setCursoPreco,
+      setCursoCategoria,
+      limparFormularioCurso,
+      salvarCurso,
+    },
+    dispatch
+  );
+
+const conectado = connect(mapStoreToProps, mapActionToProps)(FormularioCursos);
+
+export { conectado as FormularioCursos };
