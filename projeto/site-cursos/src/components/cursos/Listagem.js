@@ -10,13 +10,14 @@ import {
 const ListagemCursos = (props) => {
   const {
     listaCursos,
-    getCursos,
+    getCursos, // para poder chamar a funcao cntida nas props
     excluirCurso,
     selecionarCursoToForm,
     isPublic,
   } = props;
 
   useEffect(() => {
+    // para, de fato, chamar/ executar a funcao via Hook (o useEffect)
     getCursos();
   }, [getCursos]);
 
